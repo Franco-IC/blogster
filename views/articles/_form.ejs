@@ -1,0 +1,14 @@
+<div class="mb-3">
+    <label for="title" class="form-label"><u> Titulo: </u></label>
+    <input type="text" name="title" class="form-control" id="title" maxlength="40" value="<%= article.title%>">
+</div>
+<div class="mb-3">
+    <label for="description" class="form-label"><u>Descripción: </u></label>
+    <textarea class="form-control" name="description" id="description" rows="3"
+        maxlength="400"><%= article.description%> </textarea>
+</div>
+<div class="mb-3">
+    <label for="markdown" class="form-label"><u>Resumen: </u></label>
+    <textarea class="form-control" name="markdown" id="markdown" rows="3"
+        maxlength="40"><%= article.markdown%></textarea>
+</div>

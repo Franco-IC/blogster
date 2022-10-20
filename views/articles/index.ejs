@@ -1,0 +1,132 @@
+<%- include('../partials/head.ejs') %>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <%- include('../partials/nav-menu.ejs') %>
+            </div>
+
+            <div class="row justify-content-center text-center mt-4 me-4 mb-2 ms-4">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-text">
+                                ¡Bienvenido
+                                <i class="text-info username">
+                                    <%= user.user%>
+                                </i>!
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container pt-4">
+                <hr class="section-divider">
+                <% if(articles.length> 0) { %>
+                    <% articles.forEach(article=> { %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <h4 class="card-title ">
+                                            <%= article.title %>
+                                        </h4>
+                                    </div>
+                                    <div class="col-4"></div>
+                                    <div class="col-4 d-flex justify-content-end mb-2">
+                                        <p class="m-2">
+                                            <u>
+                                                <%= article.createdAt.toLocaleString() %>
+                                            </u>
+                                        </p>
+                                    </div>
+                                    <p class="card-text">
+                                        <%= article.markdown %>
+                                    </p>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="/articles/<%= article.slug %>" class="btn btn-info">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                                <path
+                                                    d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z" />
+                                            </svg>
+                                        </a>
+
+                                        <span class="m-2"></span>
+
+                                        <a href="/articles/edit/<%= article.id %>" class="btn btn-warning">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                            </svg>
+                                        </a>
+
+                                        <span class="m-2"></span>
+
+                                        <form id="form-delete" action="/articles/edit/<%= article.id %>?_method=DELETE"
+                                            method="POST">
+                                        </form>
+                                        <button class="btn btn-danger"
+                                            onclick="confirmDelete(this.previousElementSibling)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <% } else { %>
+                                <div class="container pt-4">
+                                    <div class="alert alert-dark shadow" role="alert">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6 offset-md-1">
+                                                <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1666234237/gatot_twmttl.jpg"
+                                                    alt="gato triste" width="520" height="450">
+                                            </div>
+                                        </div>
+
+                                        <h4 class="alert-heading mt-2 text-center">No hay ningún post todavía :(</h4>
+
+                                        <hr>
+
+                                        <p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="20"
+                                                fill="currentColor" class="bi bi-info-circle mb-1" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                            </svg>
+                                            ¿Te gustaría <a href="/articles/new-post">crear uno</a>?
+                                        </p>
+                                    </div>
+                                </div>
+                                <% } %>
+            </div>
+
+            <%- include('../partials/footer.ejs') %>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.all.min.js"></script>
+        <script src="/js/confirm-delete.js"></script>
+        <script src="/js/confirm-logout.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/switch-dark.js"></script>
+    </body>
+
+    </html>
