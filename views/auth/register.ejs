@@ -11,8 +11,9 @@
     <!-- font awesome icons  -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
-    <!-- estilos custom -->
+    <!-- estilos custom y generales -->
     <link href="css/signin.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
@@ -50,6 +51,8 @@
 
         <hr>
         <p>¿Ya creaste tu usuario? <a href="/login">Inicia sesión</a>.</p>
+
+        <%- include('../partials/footer.ejs') %>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.all.min.js"></script>
     <script src="/js/show-password.js"></script>
