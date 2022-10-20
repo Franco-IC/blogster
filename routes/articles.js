@@ -64,7 +64,7 @@ router.delete('/edit/:id', auth.isAuth, async (req, res) => {
 })
 
 // Guardar Articulo y Redireccionar
-function saveArticleAndRedirect(path, modified, username) {
+function saveArticleAndRedirect(path, modified) {
     return async (req, res) => {
         let article = req.article;
         if (modified) {
