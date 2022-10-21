@@ -15,14 +15,14 @@
                 </p>
                 <p>
                     Creado el:
-                    <%= article.createdAt.toLocaleString('es-ES', {dateStyle: 'full' , timeStyle: 'long' ,
-                        timeZone: 'GMT' }) %>
+                    <%= article.createdAt.toLocaleString('es-ES', {dateStyle: 'full' , timeStyle: 'medium' ,
+                        timeZone: 'America/Argentina/Buenos_Aires' }) %> (Buenos Aires, Argentina)
                 </p>
                 <% if(article.modifiedAt !==undefined){ %>
                     <p>
                         Modificado por última vez:
-                        <%= article.modifiedAt.toLocaleString('es-ES', {dateStyle: 'full' , timeStyle: 'long' ,
-                            timeZone: 'GMT-3' }) %>
+                        <%= article.modifiedAt.toLocaleString('es-ES', {dateStyle: 'full' , timeStyle: 'medium' ,
+                            timeZone: 'America/Argentina/Buenos_Aires' }) %> (Buenos Aires, Argentina)
                     </p>
                     <% } %>
                         <p class="card-text">
