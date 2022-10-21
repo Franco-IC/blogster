@@ -16,7 +16,7 @@
                 <p>
                     Creado el:
                     <%= article.createdAt.toLocaleString('es-ES', {dateStyle: 'full' , timeStyle: 'long' ,
-                        timeZone: 'GMT-3' }) %>
+                        timeZone: 'GMT' }) %>
                 </p>
                 <% if(article.modifiedAt !==undefined){ %>
                     <p>
