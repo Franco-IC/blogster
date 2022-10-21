@@ -114,9 +114,12 @@ exports.login = async (req, res) => {
 exports.isAuth = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
+            // cookie decoficicada
             const deco = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_KEY);
             usuario = await User.findById(deco.id);
+
             if (!usuario) return next();
+
             req.user = usuario;
             return next();
         } catch (e) {

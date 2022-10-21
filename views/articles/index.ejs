@@ -38,7 +38,8 @@
                                     <div class="col-4 d-flex justify-content-end mb-2">
                                         <p class="m-2">
                                             <u>
-                                                <%= article.createdAt.toLocaleString() %>
+                                                <%= article.createdAt.toLocaleString('es-ES', {
+                                                    timeZone: 'America/Argentina/Buenos_Aires' })%>
                                             </u>
                                         </p>
                                     </div>

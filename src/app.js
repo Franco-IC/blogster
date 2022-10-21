@@ -19,12 +19,9 @@ app.use(methodOverride('_method'));
 // cookies
 app.use(cookieParser());
 
-// rutas Home
+// Home
 app.get('/', auth.isAuth, async (req, res) => {
-    const articles = await Article.find().sort({
-        createdAt: -1
-    });
-    res.render('articles/index', { articles: articles, user: req.user });
+    res.redirect('/home')
 })
 app.get('/home', auth.isAuth, async (req, res) => {
     const articles = await Article.find().sort({
@@ -34,10 +31,13 @@ app.get('/home', auth.isAuth, async (req, res) => {
 })
 
 // About
-
 app.get('/about', (req, res) => {
     res.render('articles/about')
 })
+
+// Routers
+app.use('/', loginRouter);
+app.use('/articles', articleRouter);
 
 // para eliminar el cache y que no se pueda volver con el botón de Back luego del Logout
 app.use((req, res, next) => {
@@ -46,9 +46,6 @@ app.use((req, res, next) => {
     }
     next();
 });
-
-app.use('/', loginRouter);
-app.use('/articles', articleRouter);
 
 // Conexión a MongoDB 
 mongoose

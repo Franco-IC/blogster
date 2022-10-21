@@ -84,7 +84,7 @@ function saveArticleAndRedirect(path, modified) {
                 res.render(`articles/${path}`, {
                     alert: true,
                     article: article,
-                    alertTitle: 'Post editado con éxito',
+                    alertTitle: 'Post editado con éxito.',
                     alertMessage: 'Redirigiéndote a tu post...',
                     alertIcon: 'success',
                     showConfirmButton: '',
@@ -94,7 +94,7 @@ function saveArticleAndRedirect(path, modified) {
                 res.render(`articles/${path}`, {
                     alert: true,
                     article: article,
-                    alertTitle: 'Post realizado con éxito',
+                    alertTitle: 'Post realizado con éxito.',
                     alertMessage: 'Redirigiéndote a tu post...',
                     alertIcon: 'success',
                     showConfirmButton: '',
@@ -132,7 +132,7 @@ function saveArticleAndRedirect(path, modified) {
                         alert: true,
                         article: article,
                         alertTitle: 'Error',
-                        alertMessage: 'Uno o más campos están vacíos',
+                        alertMessage: 'Uno o más campos están vacíos.',
                         alertIcon: 'error',
                         showConfirmButton: 'true',
                         ruta: `${article._id}`
@@ -142,7 +142,7 @@ function saveArticleAndRedirect(path, modified) {
                         alert: true,
                         article: article,
                         alertTitle: 'Error',
-                        alertMessage: 'Uno o más campos están vacíos',
+                        alertMessage: 'Uno o más campos están vacíos.',
                         alertIcon: 'error',
                         showConfirmButton: 'true',
                         ruta: `articles/${path}`
