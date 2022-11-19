@@ -1,16 +1,15 @@
-const newPostForm = document.querySelector('#new-post-form');
-
-function confirmPost() {
+function confirmNewUser(formID) {
+    let form = document.querySelector(formID);
     Swal.fire({
-        title: '¿Crear un nuevo post?',
+        title: '¿Crear Usuario?',
         icon: 'info',
         showDenyButton: true,
         confirmButtonColor: '#198754',
-        confirmButtonText: 'Postear',
+        confirmButtonText: 'Crear',
         denyButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            newPostForm.submit();
+            form.submit();
         }
     })
 }

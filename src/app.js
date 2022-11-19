@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const articleRouter = require('../routes/articles');
-const loginRouter = require('../routes/login');
+const authRouter = require('../routes/auth');
+const usersRouter = require('../routes/users');
 const Article = require('../db/models/Article');
-const auth = require('../auth_controller/auth');
+const auth = require('../controllers/auth_controller');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
+const User = require('../db/models/User');
 require('dotenv').config();
 
 const app = express();
@@ -20,7 +22,7 @@ app.use(methodOverride('_method'));
 app.use(cookieParser());
 
 // Home
-app.get('/', auth.isAuth, async (req, res) => {
+app.get('/', auth.isAuth, (req, res) => {
     res.redirect('/home')
 })
 app.get('/home', auth.isAuth, async (req, res) => {
@@ -31,15 +33,22 @@ app.get('/home', auth.isAuth, async (req, res) => {
 })
 
 // About
-app.get('/about', (req, res) => {
-    res.render('articles/about')
+app.get('/about', auth.isAuth, (req, res) => {
+    res.render('articles/about', { user: req.user })
+})
+
+// Panel de Administración
+app.get('/admin-page', auth.isAuth, async (req, res) => {
+    let users = await User.find();
+    req.user.role === 'admin' ? res.render('admin/admin-page', { user: req.user, users: users }) : res.redirect('/home')
 })
 
 // Routers
-app.use('/', loginRouter);
+app.use('/', authRouter);
 app.use('/articles', articleRouter);
+app.use('/admin-page', usersRouter);
 
-// para eliminar el cache y que no se pueda volver con el botón de Back luego del Logout
+// limpiar caché y que no se pueda volver con el botón de Back después del Log Out
 app.use((req, res, next) => {
     if (!req.user) {
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')

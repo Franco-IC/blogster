@@ -3,17 +3,16 @@ const bcrypt = require('bcryptjs');
 const { promisify } = require('util');
 const User = require('../db/models/User');
 require('dotenv').config();
-//const { off } = require('process');
 
 // Registro
 exports.register = async (req, res) => {
     let user = req.user;
-    let passHash = await bcrypt.hash(req.body.pass, 8);
+    let passHash = await bcrypt.hash(req.body.password.trim(), 8);
     user.name = req.body.name;
     user.user = req.body.user;
     user.pass = passHash;
     try {
-        if (!user || !req.body.pass || !req.body.name) {
+        if (!user || !req.body.password.trim() || !req.body.name) {
             res.render('auth/register', {
                 alert: true,
                 alertTitle: 'Advertencia',
@@ -48,9 +47,10 @@ exports.register = async (req, res) => {
 
 // Login
 exports.login = async (req, res) => {
+    console.log('intento de login', req.body);
     try {
-        const username = req.body.user;
-        const pass = req.body.pass;
+        const username = req.body.user.trim();
+        const pass = req.body.password.trim();
 
         if (!username || !pass) {
             res.render('auth/login', {
@@ -72,32 +72,32 @@ exports.login = async (req, res) => {
                 res.render('auth/login', {
                     alert: true,
                     alertTitle: 'Error',
-                    alertMessage: 'Usuario y/o contraseña incorrectos',
+                    alertMessage: 'Usuario y/o contraseña incorrectos.',
                     alertIcon: 'error',
-                    showConfirmButton: 'true',
+                    showConfirmButton: 'false',
                     ruta: 'login'
                 })
-            } else {                      // Login con éxito
+            } else {   // Login con éxito
                 const id = usuario._id;
 
                 // Token de JWT (sin fecha de expiración: jwt.sign({ id: id }, process.env.JWT_KEY)
                 const token = jwt.sign({ id: id }, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRES })
                 console.log(`Token ${token} para el user ${username}`);
 
-                // Opciones de cookies
+                // Opciones de cookie para JWT
                 const cookieOpts = {
                     // Expira en 3 meses
                     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
                     httpOnly: true
                 };
 
-                // Se guarda la cookie
+                // Se guarda el token JWT
                 res.cookie('jwt', token, cookieOpts);
 
-                // Se envía el alert de login exitoso y se redirige a la Home Page
+                // Alert de login exitoso y se redirige a la Home Page
                 res.render('auth/login', {
                     alert: true,
-                    alertTitle: 'Inicio de sesión exitoso',
+                    alertTitle: 'Inicio de sesión exitoso.',
                     alertMessage: `Bienvenido ${username}`,
                     alertIcon: 'success',
                     showConfirmButton: '',
@@ -110,7 +110,7 @@ exports.login = async (req, res) => {
     }
 }
 
-// Validación de autenticación X sesión
+// Validación de Autenticación X Token de JWT
 exports.isAuth = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
@@ -131,7 +131,7 @@ exports.isAuth = async (req, res, next) => {
     }
 }
 
-// Logout
+// Log Out
 exports.logout = (req, res) => {
     res.clearCookie('jwt');
     res.redirect('login');

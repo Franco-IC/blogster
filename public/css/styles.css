@@ -1,9 +1,23 @@
 /*               estilos generales                */
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    /* Footer height */
+    padding-bottom: 5rem;
+}
+
 .footer {
-    position: fixed;
-    left: 0;
+    position: absolute;
     bottom: 0;
     width: 100%;
+    /* Footer height */
+    height: 4rem;
+    box-shadow: 1px -11px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px -11px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px -11px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 body {
@@ -39,6 +53,9 @@ body.dark nav a {
     color: #C8C8C8;
 }
 
+body.dark .vr {
+    color: #FEFEFE;
+}
 
 body.dark nav a:hover {
     color: #FEFEFE;
@@ -128,6 +145,22 @@ body.dark .section-divider {
     color: white;
 }
 
+.alert img {
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.alert a {
+    text-decoration: none;
+}
+
+body.dark .alert {
+    background-color: #2e3236;
+    border: none;
+    color: white;
+}
+
+
 .col-10 p {
     font-size: 18px;
 }
@@ -136,14 +169,20 @@ body.dark .about-container {
     color: white;
 }
 
+body.dark .admin-page-container {
+    color: white;
+}
+
 body.dark .footer {
     background-color: #222222;
 }
 
+#edit-user-form .input-group .input-group-append {
+    margin-top: 3px
+}
 
 
-.footer {
-    box-shadow: 1px -11px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 1px -11px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 1px -11px 5px 0px rgba(0, 0, 0, 0.75);
+#edit-user-form input,
+#edit-user-form select {
+    width: 600px;
 }

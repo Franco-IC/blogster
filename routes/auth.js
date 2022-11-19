@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../auth_controller/auth');
+const auth = require('../controllers/auth_controller');
 const User = require('../db/models/User');
 
 router.get('/login', (req, res) => {
-    // Si el usuario tiene una sesión activa
+    // Si el usuario tiene una sesión activa (o sea, está logeado)
     if (req.cookies.jwt) res.redirect('/home');
     else {
         res.render('auth/login', { alert: false });
@@ -27,7 +27,7 @@ router.post('/register', (req, res, next) => {
     next();
 }, auth.register);
 
-// Login
+// Log in
 router.post('/login', auth.login);
 
 // Log out

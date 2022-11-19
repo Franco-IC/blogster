@@ -1,4 +1,6 @@
-function confirmReset(form) {
+function confirmReset(formID) {
+    const form = document.querySelector(formID);
+
     Swal.fire({
         title: '¿Reiniciar formulario?',
         icon: 'warning',

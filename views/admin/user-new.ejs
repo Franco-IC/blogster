@@ -2,31 +2,34 @@
     </head>
 
     <body>
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <div class="row">
                 <%- include('../partials/nav-sin-search.ejs') %>
             </div>
-
             <div class="container pt-4">
                 <div class="card">
                     <div class="card-header text-center h5">
-                        Editar Posteo
+                        Nuevo Usuario
                     </div>
                     <div class="card-body">
-                        <form id="edit-post-form" action="/articles/edit/<%=article.id %>?_method=PUT" method="POST">
-                            <%- include('_form.ejs') %>
-                        </form>
+                        <div class="d-flex justify-content-center">
+                            <form id="new-user-form" action="/admin-page/new-user" method="POST">
+                                <%- include('user-new-form.ejs') %>
+                            </form>
+                        </div>
                         <div class="text-center">
-                            <button class="btn btn-success" onclick="confirmEdit('#edit-post-form')">
+                            <button class="btn btn-success" onclick="confirmNewUser('#new-user-form')">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-save" viewBox="0 0 16 16">
+                                    class="bi bi-person-plus-fill" viewBox="0 0 16 16">
                                     <path
-                                        d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z" />
+                                        d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    <path fill-rule="evenodd"
+                                        d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                                 </svg>
-                                Guardar
+                                Crear
                             </button>
 
-                            <button class="btn btn-warning m-2" onclick="confirmReset('#edit-post-form')">
+                            <button class="btn btn-warning m-2" onclick="confirmReset('#new-user-form')">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-repeat" viewBox="0 0 16 16">
                                     <path
@@ -43,10 +46,11 @@
             <%- include('../partials/footer.ejs') %>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.1/dist/sweetalert2.all.min.js"></script>
-        <script src="/js/confirm-edit.js"></script>
-        <script src="/js/confirm-reset.js"></script>
-        <script src="/js/confirm-logout.js"></script>
         <script src="/js/switch-dark.js"></script>
+        <script src="/js/confirm-logout.js"></script>
+        <script src="/js/confirm-user-new.js"></script>
+        <script src="/js/confirm-reset.js"></script>
+        <script src="/js/show-password.js"></script>
         <% if(alert) { %>
             <script>
                 Swal.fire({
@@ -56,13 +60,13 @@
                     showConfirmButton: '<%= showConfirmButton %>',
                 })
 
-                if (ruta = 'new-post') {
+                if (ruta = 'new-user') {
                     setTimeout(() => {
-                        window.location = '<%= ruta %>'
+                        window.location = '/admin-page/new-user'
                     }, 3000)
                 } else {
                     setTimeout(() => {
-                        window.location = '<%= ruta %>'
+                        window.location = '/admin-page'
                     }, 3000)
                 }
             </script>

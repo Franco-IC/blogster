@@ -1,8 +1,8 @@
-const editPostForm = document.querySelector('#edit-post-form');
+function confirmEdit(formID) {
+    const form = document.querySelector(formID);
 
-function confirmEdit() {
     Swal.fire({
-        title: '¿Editar post?',
+        title: '¿Guardar los cambios?',
         showDenyButton: true,
         icon: 'warning',
         confirmButtonColor: '#ffc107',
@@ -11,7 +11,7 @@ function confirmEdit() {
         denyButtonColor: '#3085d6'
     }).then((result) => {
         if (result.isConfirmed) {
-            editPostForm.submit();
+            form.submit();
         } else if (result.isDenied) {
             Swal.fire('No se guardaron los cambios', '', 'info')
         }

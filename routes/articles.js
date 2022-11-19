@@ -1,15 +1,13 @@
 const express = require('express');
 const Article = require('../db/models/Article');
 const router = express.Router();
-const auth = require('../auth_controller/auth');
+const auth = require('../controllers/auth_controller');
 const methodOverride = require('method-override');
 router.use(methodOverride('_method'));
 
 // Busqueda X Título
-router.get('/search', async (req, res) => {
+router.get('/search', auth.isAuth, async (req, res) => {
     titulo = req.query.searchVal.trim();
-    console.log('búsqueda: ' + titulo);
-    console.log(titulo.length);
     let article;
 
     if (titulo.length === 0) {
@@ -19,15 +17,15 @@ router.get('/search', async (req, res) => {
     }
 
     if (article === null) {
-        res.render('articles/not-found');
+        res.render('articles/not-found', { user: req.user });
     } else {
-        res.render('articles/show', { article: article });
+        res.render('articles/show-article', { article: article, user: req.user });
     }
 })
 
 // Render form para Articulo nuevo
 router.get('/new-post/', auth.isAuth, (req, res) => {
-    res.render('articles/new-post', { article: new Article(), alert: false });
+    res.render('articles/new-post', { article: new Article(), alert: false, user: req.user });
 })
 
 // Creación del Articulo
@@ -42,13 +40,13 @@ router.post('/', auth.isAuth, async (req, res, next) => {
 router.get('/:slug', auth.isAuth, async (req, res) => {
     const article = await Article.findOne({ slug: req.params.slug });
     if (article == null) res.redirect('/');
-    res.render('articles/show', { article: article });
+    res.render('articles/show-article', { article: article, user: req.user });
 })
 
 // Ruta para renderizar el Articulo a Editar
 router.get('/edit/:id', auth.isAuth, async (req, res) => {
     const article = await Article.findById({ _id: req.params.id });
-    res.render('articles/edit-post', { article: article, alert: false });
+    res.render('articles/edit-post', { article: article, alert: false, user: req.user });
 })
 
 // Editar Articulo x ID
@@ -82,8 +80,10 @@ function saveArticleAndRedirect(path, modified) {
             article = await article.save();
             if (modified) {
                 res.render(`articles/${path}`, {
-                    alert: true,
                     article: article,
+                    user: req.user,
+                    // Opciones de Alert
+                    alert: true,
                     alertTitle: 'Post editado con éxito.',
                     alertMessage: 'Redirigiéndote a tu post...',
                     alertIcon: 'success',
@@ -92,8 +92,10 @@ function saveArticleAndRedirect(path, modified) {
                 })
             } else {
                 res.render(`articles/${path}`, {
-                    alert: true,
                     article: article,
+                    user: req.user,
+                    // Opciones de Alert
+                    alert: true,
                     alertTitle: 'Post realizado con éxito.',
                     alertMessage: 'Redirigiéndote a tu post...',
                     alertIcon: 'success',
@@ -107,6 +109,9 @@ function saveArticleAndRedirect(path, modified) {
             if (e.code === 11000) {
                 if (modified) {
                     res.render(`articles/${path}`, {
+                        article: article,
+                        user: req.user,
+                        // Opciones de Alert
                         alert: true,
                         article: article,
                         alertTitle: 'Error',
@@ -117,6 +122,9 @@ function saveArticleAndRedirect(path, modified) {
                     })
                 } else {
                     res.render(`articles/${path}`, {
+                        article: article,
+                        user: req.user,
+                        // Opciones de Alert
                         alert: true,
                         article: article,
                         alertTitle: 'Error',
@@ -129,6 +137,9 @@ function saveArticleAndRedirect(path, modified) {
             } else {
                 if (modified) {
                     res.render(`articles/${path}`, {
+                        article: article,
+                        user: req.user,
+                        // Opciones de Alert
                         alert: true,
                         article: article,
                         alertTitle: 'Error',
@@ -139,6 +150,9 @@ function saveArticleAndRedirect(path, modified) {
                     })
                 } else {
                     res.render(`articles/${path}`, {
+                        article: article,
+                        user: req.user,
+                        // Opciones de Alert
                         alert: true,
                         article: article,
                         alertTitle: 'Error',

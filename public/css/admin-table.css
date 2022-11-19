@@ -1,0 +1,15 @@
+body.dark {
+    color: white;
+}
+
+.admin-container {
+    background-color: rgb(182, 208, 212)
+}
+
+body.dark .admin-container {
+    background-color: #2e3236
+}
+
+.table {
+    padding: 20px 0px 20px;
+}

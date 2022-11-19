@@ -1,4 +1,4 @@
-const btn = document.getElementById("pass");
+const btn = document.getElementById("password");
 const show_eye = document.getElementById("show_eye");
 const hide_eye = document.getElementById("hide_eye");
 
