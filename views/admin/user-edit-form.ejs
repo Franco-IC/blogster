@@ -1,6 +1,7 @@
 <div class="mb-3">
     <label for="username" class="form-label ms-2">Username: </label>
-    <input type="text" class="form-control" name="username" id="username" maxlength="40" value="<%= userEdit.user%>">
+    <input type="text" class="form-control" name="username" id="username" maxlength="40" value="<%= userEdit.user%>"
+        autocomplete="off">
 </div>
 
 <div class="mb-3">
@@ -26,7 +27,8 @@
 
 <div class="mb-3">
     <label for="name" class="form-label ms-2">Nombre completo: </label>
-    <input type="text" class="form-control" name="name" id="name" maxlength="20" value="<%= userEdit.name%>">
+    <input type="text" class="form-control" name="name" id="name" maxlength="40" value="<%= userEdit.name%>"
+        autocomplete="off">
 </div>
 
 <div class="input-group mb-4">
