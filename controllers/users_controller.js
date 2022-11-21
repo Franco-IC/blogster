@@ -4,7 +4,7 @@ const User = require('../db/models/User');
 exports.new = async (req, res) => {
     let usuario = req.body;
     let userObj = new User();
-    console.log(usuario);
+
     // Errores
     // Campos vacíos
     if (!usuario.username || !usuario.name) {
@@ -21,7 +21,6 @@ exports.new = async (req, res) => {
     }
     // Contraseña inválida <= 6 caracteres
     if (usuario.password.trim().length >= 0 && usuario.password.trim().length <= 5) {
-        console.log(usuario.name);
         res.render('admin/user-new', {
             user: req.user,
             ruta: 'new-user',
@@ -51,7 +50,6 @@ exports.new = async (req, res) => {
             })
         } catch (error) {
             console.log(error.message);
-            console.log(usuario);
             res.render('admin/user-new', {
                 userNew: usuario,
                 user: req.user,

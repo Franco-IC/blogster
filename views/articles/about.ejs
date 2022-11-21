@@ -1,4 +1,8 @@
 <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/about-page.css">
     </head>
 
     <body>
@@ -7,7 +11,90 @@
                 <%- include('../partials/nav-sin-search.ejs') %>
             </div>
             <div class="container pt-4 text-center about-container">
-                <h1>Sobre esta página</h1>
+                <h2 class="pb-2 border-bottom">Realicé este sitio con estas tecnologías</h2>
+                <div class="row mt-3">
+                    <div class="feature c-1 col shadow-lg">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669052197/icons8-html-5-240_jsroq9.png"
+                            width="90px" height="90px">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669052377/icons8-css3-240_zxohaf.png"
+                            width="90px" height="90px">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669052385/icons8-javascript-240_hsyud1.png"
+                            width="90px" height="90px">
+
+                        <h3 class="fs-2"> <a target="_blank" href="https://www.w3schools.com/html/">HTML</a> , <a
+                                target="_blank" href="https://www.w3schools.com/css/">CSS</a> y <a target="_blank"
+                                href="https://www.w3schools.com/js/">JS</a></h3>
+                        <p>Base del proyecto.</p>
+                    </div>
+
+                    <div class="feature c-2 col shadow-lg">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669053299/bootstrap_u5uvzh.png"
+                            width="70px" height="70px" class="mt-2">
+
+                        <h3 class="fs-2 mt-2"><a target="_blank" href="https://getbootstrap.com/">Bootstrap 5</a></h3>
+                        <p>Para un estilo más personalizado y facilidad al estructurar el contenido.</p>
+                    </div>
+
+                    <div class="feature c-3 col shadow-lg">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669054657/code_i2okww.png"
+                            width="90px" height="90px">
+
+                        <h3 class="fs-2"><a target="_blank" href="https://ejs.co/">EJS Templates</a></h3>
+                        <p>Como motor de plantillas.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="feature c-4 col shadow-lg">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669057481/35137722_dihnq8.png"
+                            width="90px" height="90px">
+
+                        <h3 class="fs-2"><a target="_blank" href="https://sweetalert2.github.io/">SweetAlert2</a></h3>
+                        <p>Para alertas personalizadas.</p>
+                    </div>
+
+                    <div class="feature c-5 col shadow-lg">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669055023/icons8-node-js-240_x7sypj.png"
+                            width="90px" height="90px" class="me-4">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669053142/icons8-express-js-250_njmjv6.png"
+                            width="90px" height="90px" class="">
+
+                        <h3 class="fs-2"><a target="_blank" href="https://nodejs.org/">NodeJS</a> y <a target="_blank"
+                                href="https://expressjs.com/">Express</a></h3>
+                        <p>Back-end y routing.</p>
+                    </div>
+
+                    <div class="feature c-6 col shadow-lg">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669053136/icons8-mongodb-240_ffwamw.png"
+                            width="90px" height="90px">
+
+                        <h3 class="fs-2"><a target="_blank" href="https://www.mongodb.com/">MongoDB</a> y <a
+                                target="_blank" href="https://mongoosejs.com/">Mongoose</a></h3>
+                        <p>Base de Datos y ODM.</p>
+                    </div>
+                </div>
+
+                <div class="row last">
+                    <div class="feature c-7 col-4 shadow-lg">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669058547/jwt_lsndj9.png"
+                            width="90px" height="90px">
+
+                        <h3 class="fs-2"><a target="_blank" href="https://jwt.io/">JWT</a> y <a target="_blank"
+                                href="https://www.npmjs.com/package/bcrypt">bcrypt</a></h3>
+                        <p>Para autenticación y sesiones, bcrypt para encriptar/autenticar contraseñas.</p>
+                    </div>
+
+
+                    <div class="feature c-8 col-4 shadow-lg">
+                        <img src="https://res.cloudinary.com/dntnaemjx/image/upload/v1669054657/code_i2okww.png"
+                            width="90px" height="90px">
+
+                        <h3 class="fs-2"><a target="_blank" href="https://datatables.net/">DataTables</a></h3>
+                        <p>Para el panel de administración de usuarios.</p>
+                    </div>
+
+                </div>
+
             </div>
 
             <%- include('../partials/footer.ejs') %>

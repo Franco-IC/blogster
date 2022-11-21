@@ -1,0 +1,48 @@
+.feature {
+    border: 3px solid;
+    border-radius: 25px;
+    margin: 10px;
+    height: 200px;
+}
+
+body.dark .feature {
+    background-color: #2a343e;
+}
+
+.about-container a {
+    text-decoration: none;
+}
+
+.c-1 {
+    border-color: rgb(169, 147, 60);
+}
+
+.c-2 {
+    border-color: rgb(123, 72, 174);
+}
+
+.c-3,
+.c-8 {
+    border-color: rgb(74, 80, 186);
+}
+
+.c-4 {
+    border-color: rgb(123, 72, 174);
+}
+
+.c-5 {
+    border-color: rgb(28, 134, 74);
+}
+
+.c-6 {
+    border-color: rgb(28, 134, 28);
+}
+
+.c-7 {
+    border-color: rgb(161, 60, 92);
+}
+
+.last {
+    display: flex;
+    justify-content: center;
+}

@@ -8,11 +8,11 @@ require('dotenv').config();
 exports.register = async (req, res) => {
     let user = req.user;
     let passHash = await bcrypt.hash(req.body.password.trim(), 8);
-    user.name = req.body.name;
-    user.user = req.body.user;
+    user.name = req.body.name.trim();
+    user.user = req.body.user.trim();
     user.pass = passHash;
     try {
-        if (!user || !req.body.password.trim() || !req.body.name) {
+        if (!user || !req.body.password.trim() || !req.body.name.trim()) {
             res.render('auth/register', {
                 alert: true,
                 alertTitle: 'Advertencia',
