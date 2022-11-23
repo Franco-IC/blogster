@@ -1,6 +1,6 @@
 # blogster
 Proyecto final para el Bootcamp de NodeJS (Telecom-Digitalers)
-### Live: <a href="blogster-i2qi.onrender.com/" target="_blank">blogster</a>
+### Live: blogster-i2qi.onrender.com/
 
 ### Testing Users
 user;user123
