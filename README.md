@@ -1,6 +1,6 @@
 # blogster
-Proyecto final para el Bootcamp de NodeJS (Telecom-Digitalers)
-### <a href="https://blogster-i2qi.onrender.com">Live Site</a>
+## Proyecto final para el Bootcamp de NodeJS (Telecom-Digitalers)
+### <a href="https://react-kanban-board.onrender.com/">Live Site</a>
 
 ### Testing Users
 user;user123
