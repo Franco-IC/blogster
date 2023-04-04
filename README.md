@@ -1,5 +1,5 @@
 # blogster
-## Proyecto final para el Bootcamp de NodeJS (Telecom-Digitalers)
+### Proyecto final para el Bootcamp de NodeJS (Telecom-Digitalers)
 ### <a href="https://react-kanban-board.onrender.com/">Live Site</a>
 
 ### Testing Users
