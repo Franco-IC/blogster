@@ -90,7 +90,7 @@ exports.login = async (req, res) => {
 
         // Opciones de cookie para JWT
         const cookieOpts = {
-          // Expira en 3 meses
+          // Expira en 10 días
           expires: new Date(
             Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
           ),
@@ -121,27 +121,36 @@ exports.isAuth = async (req, res, next) => {
   if (req.cookies.jwt) {
     try {
       // cookie decoficicada
-      const deco = await promisify(jwt.verify)(
+      const decodifiedJWT = await promisify(jwt.verify)(
         req.cookies.jwt,
         process.env.JWT_KEY
       );
-      usuario = await User.findById(deco.id);
+      usuario = await User.findById(decodifiedJWT.id);
 
-      if (!usuario) return next();
+      if (!usuario) return clearJWTCookieAndRedirectToLogin(res);
 
       req.user = usuario;
       return next();
     } catch (e) {
       console.log(e.message);
-      return next();
+
+      return clearJWTCookieAndRedirectToLogin(res);
     }
   } else {
-    res.redirect("login");
+    return clearJWTCookieAndRedirectToLogin(res);
   }
 };
 
+function clearJWTCookieAndRedirectToLogin(res) {
+  clearCookie(res, "jwt");
+  return res.redirect("/login");
+}
+
+function clearCookie(res, name) {
+  res.cookie(name, null, { expires: new Date(0) });
+}
+
 // Log Out
 exports.logout = (req, res) => {
-  res.clearCookie("jwt");
-  res.redirect("login");
+  return clearJWTCookieAndRedirectToLogin(res);
 };
